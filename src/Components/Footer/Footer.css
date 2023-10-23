@@ -1,0 +1,16 @@
+.footer-main {
+    position: sticky;
+    top: 100%;
+}
+.text-logo {
+    color: var(--main-color);
+    font-family: 'Allan', cursive;
+    
+} 
+.icons-footer:hover  {
+color: var(--main-color);
+}
+.input-field {
+ outline-style: none;
+ height: 3rem;
+}
