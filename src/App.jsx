@@ -18,6 +18,12 @@ import Cart from "./Components/Cart/Cart";
 import Payment from "./Components/Payment/Payment";
 import AllOrders from "./Components/AllOrders/AllOrders";
 import CartEmpty from "./Components/CartEmpty/CartEmpty";
+import Wishlist from "./Components/Wishlist/Wishlist";
+import ForgetPassword from "./Components/ForgetPassword/ForgetPassword";
+import VerifyCode from './Components/VerifyCode/VerifyCode'
+import ResetPassword from "./Components/ResetPassword/ResetPassword";
+
+
 
 const myRouter = createBrowserRouter([
   {
@@ -88,11 +94,30 @@ const myRouter = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+      {
+        path: "wishlist",
+        element: (
+          <ProtectedRoute>
+            <Wishlist />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "forgetPassword",
+        element: <ForgetPassword />,
+      },
+      {
+        path: "verifyCode",
+        element: <VerifyCode />,
+      },
+      {
+        path: "resetPassword",
+        element: <ResetPassword />,
+      },
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
       { path: "*", element: <NotFound /> },
       { path: "cartEmpty", element: <CartEmpty /> },
-
     ],
   },
 ]);

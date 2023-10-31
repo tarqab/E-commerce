@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { authContext } from "../../Context/authentication";
-import { cartContext } from "../CartContext/cartContext";
 
 export default function Profile() {
   const { token } = useContext(authContext);

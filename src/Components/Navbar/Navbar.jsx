@@ -17,7 +17,7 @@ export default function Navbar() {
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
-        <div className="container-fluid">
+        <div className="container-fluid py-2">
           <Link className="navbar-brand" to="">
             {" "}
             <img src={logoGeneral} alt="logo"></img>
@@ -67,6 +67,12 @@ export default function Navbar() {
                   <Link className="nav-link" to="/allOrders">
                     {" "}
                     All Orders
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/wishlist">
+                    {" "}
+                    Wishlist
                   </Link>
                 </li>
               </ul>

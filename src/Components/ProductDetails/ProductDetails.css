@@ -5,3 +5,8 @@
 
     max-width: 31.25rem;
 }
+
+.details button {
+    border: none;
+    margin-top: 0.5rem;
+}

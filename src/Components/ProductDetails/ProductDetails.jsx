@@ -6,11 +6,13 @@ import { useParams } from "react-router-dom";
 import "./ProductDetails.css";
 import { cartContext } from "../CartContext/cartContext";
 import toast from "react-hot-toast";
+import { error } from "jquery";
 export default function ProductDetails() {
   const { id } = useParams();
 
   const { addProuductToCart } = useContext(cartContext);
   const [loaderAddingProduct, setLoaderAddingProduct] = useState();
+  const [loaderWishlist, setLoaderWishlist] = useState(false);
 
   async function addProduct(id) {
     setLoaderAddingProduct(true);
@@ -33,6 +35,27 @@ export default function ProductDetails() {
     cacheTime: 0,
   });
 
+  async function addToWishlist(id) {
+    try {
+      const { data } = await axios.post(
+        "https://ecommerce.routemisr.com/api/v1/wishlist",
+        { productId: id },
+        {
+          headers: { token: localStorage.getItem("tkn") },
+        }
+      );
+      if (data.status === "success") {
+        toast.success("Product added to wishlist");
+        setLoaderWishlist(true)
+      } else {
+        toast.error("Error occurred");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+    console.log(data.message);
+  }
   return (
     <>
       {isFetching ? (
@@ -51,7 +74,7 @@ export default function ProductDetails() {
           />
         </div>
       ) : (
-        <div className="container my-5">
+        <div className="container py-5">
           <div className="row">
             <div className="col-md-3">
               <figure>
@@ -63,31 +86,37 @@ export default function ProductDetails() {
               </figure>
             </div>
             <div className="col-md-9 details d-flex justify-content-center align-items-center">
-              <div>
-                <div className="details">
-                  <h1>{data.data.data.title}</h1>
-                  <p className="mt-4">{data.data.data.description}</p>
-                  <h5 className="">{data.data.data.price / 10}Euro</h5>
-                  <button
-                    onClick={() => addProduct(id)}
-                    className="w-100 p-3 rounded-3 gap-2 bg-success border-white d-flex justify-content-center align-items-center"
-                  >
-                    {loaderAddingProduct ? (
-                      <Bars
-                        height="20"
-                        width="20"
-                        color="#fff"
-                        ariaLabel="bars-loading"
-                        wrapperStyle={{}}
-                        wrapperClass=""
-                        visible={true}
-                      />
-                    ) : (
-                      ""
-                    )}
-                    Add to Cart
-                  </button>
-                </div>
+              <div className="details">
+                <h1>{data.data.data.title}</h1>
+                <p className="mt-4">{data.data.data.description}</p>
+                <h5 className="">{data.data.data.price / 10 + " "}Euro</h5>
+                <button
+                  onClick={() => addProduct(id)}
+                  className="w-100 p-3 rounded-3 gap-2 bg-success border-white d-flex justify-content-center align-items-center"
+                >
+                  {loaderAddingProduct ? (
+                    <Bars
+                      height="20"
+                      width="20"
+                      color="#fff"
+                      ariaLabel="bars-loading"
+                      wrapperStyle={{}}
+                      wrapperClass=""
+                      visible={true}
+                    />
+                  ) : (
+                    ""
+                  )}
+                  Add to Cart
+                </button>
+                <button
+                  onClick={() => addToWishlist(id)}
+                  className="w-100 p-3 rounded-3 gap-2 bg-warning d-flex justify-content-center align-items-center"
+                >
+                  Add to wishlist
+                  {!loaderWishlist ?  <i className="fa-regular fa-heart fa-lg" ></i> :  <i className="fa-solid fa-heart" style={{color:"red"}}></i> }
+                 
+                </button>
               </div>
             </div>
           </div>

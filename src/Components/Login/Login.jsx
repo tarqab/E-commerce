@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
 
 import axios from "axios";
@@ -71,6 +71,8 @@ export default function Login() {
       return errors;
     },
   });
+
+ 
 
   return (
     <>
@@ -154,6 +156,12 @@ export default function Login() {
             )}
           </button>
         </form>
+        <Link to="/forgetPassword">
+          {" "}
+          <h6 className="mt-1" style={{ cursor: "pointer" }}>
+            Forget Password?
+          </h6>
+        </Link>
       </div>
     </>
   );

@@ -37,7 +37,8 @@ export default function Categories() {
         </div>
       ) : (
         <div className="container py-5">
-          <div className="row g-2">
+        <h2 className="text-center">Categories</h2>
+        <div className="row py-3 g-2">
             {allCategories?.data.map(function (item, index) {
               return (
                 <div key={index} className="col-md-3">
