@@ -113,7 +113,9 @@ export default function Products() {
                       <button
                         disabled={!token}
                         onClick={() => addProduct(product.id)}
-                        className="mt-2 w-100 p-1 gap-2 rounded-3 bg-success border-white "
+                        className="mt-2 w-100 p-1 gap-2 rounded-3 bg-success border-white text-white
+
+ "
                       >
                         Add to Cart
                       </button>
