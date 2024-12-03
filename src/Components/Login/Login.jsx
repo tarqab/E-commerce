@@ -89,6 +89,10 @@ export default function Login() {
         )}
 
         <h2 className="mt-3">Login Now</h2>
+        <p>
+                For testing there is made account yo can use it <br />
+                mail: test@gmail.com <br /> password: 123456
+        </p>
         <form onSubmit={formikObject.handleSubmit}>
           <div className="mb-3">
             <label htmlFor="email" className="form-label">
